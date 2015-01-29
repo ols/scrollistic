@@ -1,0 +1,35 @@
+﻿@using searchtactics.Web.Helpers
+@model searchtactics.Web.Controllers.MyModel
+@{
+    ViewBag.Title = "Cars";
+}
+
+@section styles {
+    <style>
+        .imgclass img {
+            width: 350px;
+        }
+    </style>
+}
+
+<div ng-controller="HomeController" ng-init="initSearch(@Model.List.ToJson());">
+    <form class="form-inline well">
+        <div class="form-group">
+            <input id="searchInput" class="form-control left" type="text" value="" placeholder="Search for something">
+        </div>
+        <div class="form-group">
+            <button id="searchButton" type="submit" class="btn btn-default left">Search</button>
+        </div>
+    </form>
+    <hr />
+    <div vs-repeat class="row" infinite-scroll='fetchMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check="false" infinite-scroll-disabled='searching'>
+        <div ng-cloak class="col-sm-6 col-md-4" bindonce ng-repeat="item in items | unique: 'Id'">
+            <div class="thumbnail">
+                <div class="imgclass" afkl-lazy-image="//placehold.it/480x480 480w, //placehold.it/768x768 768w, //placehold.it/936x936"></div>
+                <div class="caption">
+                    <h3 bo-text="item.Name"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
