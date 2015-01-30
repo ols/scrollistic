@@ -3,6 +3,7 @@ app.controller("HomeController", [
     "$scope", "$http", function ($scope, $http) {
         $scope.items = [];
         $scope.page = 0;
+        $scope.skip = 128;
         $scope.take = 128;
         $scope.defaultSkip = 128;
         $scope.defaultTake = 128;
@@ -13,7 +14,6 @@ app.controller("HomeController", [
                 "&page=" + $scope.page +
                 "&skip=" + $scope.skip).success(function (data) {
                 for (var i = 0; i < data.Cars.length; i++) {
-                    console.log(data.Cars[i].Name);
                     $scope.items.push(data.Cars[i]);
                 }
             });
